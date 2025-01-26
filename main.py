@@ -35,12 +35,26 @@ members_type2 = {
 elements = {}
 
 def add_element (elements, id, name, type, role, parent, childs):
-    elements["element_id"] = id
-    elements["element_type"] = type
-    elements["element_name"] = name
-    elements["role"] = role
-    elements["parent"] = parent
-    elements["childs"] = childs
+    elements[id] = {}
+    elements[id]["id"] = id
+    elements[id]["element_type"] = type
+    elements[id]["element_name"] = name
+    elements[id]["role"] = role
+    elements[id]["parent"] = parent
+    elements[id]["childs"] = childs
     return elements
 
-print(add_element(elements, 1, "B", "A", "C", 3, [4,2]))
+add_element(elements, 1, "B", "A", "C", 3, [4,2])
+add_element(elements, 2, "E", "D", "F", 1, [90,23])
+add_element(elements, 3, "E", "D", "F", 0, [1, 4])
+print(elements)
+
+
+def move_element (elements, moving, new_parent):
+    old_parent = elements[moving]["parent"]
+    elements[old_parent]["childs"].remove(moving)
+    elements[moving]["parent"] = new_parent
+    elements[new_parent]["childs"].append(moving)
+    return elements
+
+print (move_element(elements, 2, 3))
