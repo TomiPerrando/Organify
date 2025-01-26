@@ -58,3 +58,9 @@ def move_element (elements, moving, new_parent):
     return elements
 
 print (move_element(elements, 2, 3))
+
+def delete_element (elements, id):
+    del elements[id]
+    return elements
+
+print(delete_element(elements, 2))
